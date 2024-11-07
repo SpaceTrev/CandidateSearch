@@ -21,8 +21,9 @@ const CandidateCard = ({
   useEffect(() => {
     const fetchCandidateDetails = async () => {
       const data = await getUserDetails(candidate.login)
-      if (data) setCandidateInfo(data)
-      else setCurrentIndex(currentIndex + 1)
+      console.log(data)
+      if (!data.login) setCurrentIndex(currentIndex + 1)
+      else if (data) setCandidateInfo(data)
     }
 
     fetchCandidateDetails()
