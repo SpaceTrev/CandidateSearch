@@ -7,7 +7,7 @@ import type {
 } from "../interfaces/Candidate.interface"
 
 const CandidateSearch = () => {
-  // FIXME: Updated type of the local state function so that it aligns with the results of the first API call
+  // Updated type of the local state function so that it aligns with the results of the first API call
   const [candidates, setCandidates] = useState<CandidateSearch[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [savedCandidates, setSavedCandidates] = useState<Candidate[]>(() => {
@@ -28,7 +28,7 @@ const CandidateSearch = () => {
     localStorage.setItem("savedCandidates", JSON.stringify(savedCandidates))
   }, [savedCandidates])
 
-  // FIXME: This function now accepts a prop canddateInfo so that it ccan be passed in, in the child component to allow the local storage to get updated with the correct details from the API call that contgains EMAIL, Location ETC.
+  // This function now accepts a prop canddateInfo so that it ccan be passed in, in the child component to allow the local storage to get updated with the correct details from the API call that contgains EMAIL, Location ETC.
   const handleAccept = (candidateInfo: Candidate) => {
     if (candidates[currentIndex]) {
       setSavedCandidates([...savedCandidates, candidateInfo])
