@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { searchGithub } from "../api/API"
+import { searchGithub } from "../api/API.tsx"
 import CandidateCard from "./CandidateCard"
 import type {
   Candidate,

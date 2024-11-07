@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Candidate, CandidateSearch } from "../interfaces/Candidate.interface"
-import { getUserDetails } from "../api/API"
+import { getUserDetails } from "../api/API.tsx"
 
 interface CandidateCardProps {
   candidate: CandidateSearch
@@ -19,7 +19,7 @@ const CandidateCard = ({
   useEffect(() => {
     const fetchCandidateDetails = async () => {
       // FIXME: API call to get the user details based on the username of the card currently rendered on the screem
-      const data = await getUserDetails(candidate.username)
+      const data = await getUserDetails(candidate.login)
       if (data) setCandidateInfo(data)
     }
 
@@ -31,17 +31,15 @@ const CandidateCard = ({
       <div className="candidate-card">
         <img
           //FIXME: these were changed to use the candidateInfo state value from this component that we fetched and set using the useEffect above ^^
-          src={candidateInfo.avatar}
-          alt={`${candidateInfo.username}'s avatar`}
+          src={candidateInfo.avatar_url}
+          alt={`${candidateInfo.login}'s avatar`}
           className="candidate-avatar"
         />
         <div className="candidate-info">
           <h2 className="candidate-name">
             {/*FIXME: Now candidateInfo instead of canidate before */}
-            {candidateInfo.username}{" "}
-            <span className="candidate-username">
-              ({candidateInfo.username})
-            </span>
+            {candidateInfo.login}{" "}
+            <span className="candidate-username">({candidateInfo.login})</span>
           </h2>
           {/*FIXME: Now candidateInfo instead of canidate before */}
           <p>Location: {candidateInfo.location}</p>
