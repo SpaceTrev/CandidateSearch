@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react";
-import { Candidate } from "../interfaces/Candidate.interface";
+import { useState, useEffect } from "react"
+import { Candidate } from "../interfaces/Candidate.interface"
 
 const SavedCandidates = () => {
-  const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
+  const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([])
 
   useEffect(() => {
-    const saved = localStorage.getItem("savedCandidates");
-    setSavedCandidates(saved ? JSON.parse(saved) : []);
-  }, []);
+    const saved = localStorage.getItem("savedCandidates")
+    setSavedCandidates(saved ? JSON.parse(saved) : [])
+  }, [])
 
   const handleReject = (id: number) => {
     const updatedCandidates = savedCandidates.filter(
       (candidate) => candidate.id !== id
-    );
-    setSavedCandidates(updatedCandidates);
-    localStorage.setItem("savedCandidates", JSON.stringify(updatedCandidates));
-  };
+    )
+    setSavedCandidates(updatedCandidates)
+    localStorage.setItem("savedCandidates", JSON.stringify(updatedCandidates))
+  }
 
   if (savedCandidates.length === 0) {
-    return <p>No candidates have been accepted.</p>;
+    return <p>No candidates have been accepted.</p>
   }
 
   return (
@@ -42,13 +42,13 @@ const SavedCandidates = () => {
               <td>
                 <img
                   className="avatar"
-                  src={candidate.avatar}
-                  alt={`${candidate.username}'s avatar`}
+                  src={candidate.avatar_url}
+                  alt={`${candidate.login}'s avatar`}
                 />
               </td>
               <td>
-                {candidate.username} <br />
-                <em>({candidate.username})</em>
+                {candidate.login} <br />
+                <em>({candidate.login})</em>
               </td>
               <td>{candidate.location}</td>
               <td>
@@ -69,7 +69,7 @@ const SavedCandidates = () => {
         </tbody>
       </table>
     </div>
-  );
-};
+  )
+}
 
-export default SavedCandidates;
+export default SavedCandidates

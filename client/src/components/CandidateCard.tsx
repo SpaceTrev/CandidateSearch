@@ -6,12 +6,16 @@ interface CandidateCardProps {
   candidate: CandidateSearch
   onAccept: (candidateInfo: Candidate) => void //FIXME: Updated prop for the function to take valuie so we could pass in the details from the child to update the state value and local storage in teh parent to avoid having to move all of that doen here
   onReject: () => void
+  currentIndex: number
+  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>
 }
 
 const CandidateCard = ({
   candidate,
   onAccept,
   onReject,
+  currentIndex,
+  setCurrentIndex,
 }: CandidateCardProps) => {
   // FIXME: Candidate Info state value to store results of API call
   const [candidateInfo, setCandidateInfo] = useState<Candidate>({} as Candidate) // type assertion to assert that the default value of the state variable is of the type of the state value IE {} as Candidate
@@ -21,6 +25,7 @@ const CandidateCard = ({
       // FIXME: API call to get the user details based on the username of the card currently rendered on the screem
       const data = await getUserDetails(candidate.login)
       if (data) setCandidateInfo(data)
+      else setCurrentIndex(currentIndex + 1)
     }
 
     fetchCandidateDetails()
