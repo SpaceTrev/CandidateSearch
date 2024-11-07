@@ -49,6 +49,8 @@ const CandidateSearch = () => {
       candidate={candidates[currentIndex]}
       onAccept={handleAccept}
       onReject={handleReject}
+      currentIndex={currentIndex}
+      setCurrentIndex={setCurrentIndex}
     />
   )
 }
